@@ -3,8 +3,7 @@ module Clementine
   # example
   #   Clementine.options = ":optimizations :whitespace"
   module Options
-    @options = ""
-    attr_accessor :options
+    attr_accessor :options, :clojurescript_path
   end
   extend Options
 
@@ -15,8 +14,8 @@ module Clementine
       @file = file
       @options = options
       # FIXME - ugly hack to override options
-      @options = ["'{:output-dir \"public/assets\" #{Clementine.options}}'"]
-      @classpath = CLASSPATH
+      @options = ["'{:output-dir \"public/assets\" #{Clementine.options || ""}}'"]
+      @classpath = CLASSPATH + (Clementine.clojurescript_path || []).map { |path| File.expand_path path }
     end
 
     def compile
