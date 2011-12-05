@@ -1,0 +1,11 @@
+Rebuilding the goog.jar
+-----------------------
+
+wget  <closure-library you want> (currently http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip)
+mkdir closure-library && cd closure-library
+unzip ../closure-library-20111110-r1376.zip
+cd ..
+mkdir goog; cp -nax closure-library/closure/goog/* closure-library/third_party/closure/goog/* goog
+manually remove the ../../third_party/closure/goog prefix from the last lines in goog/deps.js
+jar cf goog.jar goog
+cp goog.jar ~/clementine/vendor/assets/lib
