@@ -14,11 +14,12 @@ module Clementine
       @file = file
       @options = options
       # FIXME - ugly hack to override options
-      @options = ["'{:output-dir \"public/assets\" #{Clementine.options || ""}}'"]
+      @options = "'{:output-dir \"public/assets\" #{Clementine.options || ""}}'"
       @classpath = CLASSPATH + (Clementine.clojurescript_path || []).map { |path| File.expand_path path }
     end
 
     def compile
+      puts "#{command} #{@file} #{@options}"
       begin
         cmd = "#{command} #{@file} #{@options} 2>&1"
         result = `#{cmd}`
