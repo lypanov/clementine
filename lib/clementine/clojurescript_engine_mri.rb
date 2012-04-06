@@ -19,7 +19,7 @@ module Clementine
     end
 
     def compile
-      puts "#{command} #{@file} #{@options}"
+      puts "Compiling #{@file}"
       begin
         cmd = "#{command} #{@file} #{@options} 2>&1"
         result = `#{cmd}`
